@@ -245,9 +245,6 @@ minetest.register_on_generated(function(minp, maxp, seed)
 end)
 
 
-
-
-
 local time = math.floor(tonumber(os.clock()-load_time_start)*100+0.5)/100
 local msg = "[sun_flowers] loaded after ca. "..time
 if time > 0.05 then
