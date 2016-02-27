@@ -53,10 +53,11 @@ local c_ignore = minetest.get_content_id("ignore")
 local c_stengl = minetest.get_content_id("default:fence_wood")
 local c_stempel_tag = minetest.get_content_id("mesecons_solarpanel:solar_panel_on")
 local c_stempel_nacht = minetest.get_content_id("mesecons_solarpanel:solar_panel_off")
-local c_blutenblatt = minetest.get_content_id("doors:trapdoor")
-local c_blutenblatt_geschlossen = minetest.get_content_id("doors:trapdoor_open")
+local c_blutenblatt = minetest.get_content_id("doors:trapdoor_open")
+local c_blutenblatt_geschlossen = minetest.get_content_id("doors:trapdoor")
 
-local param2ps_list = {[0]={-1,0}, {0,-1}, {1,0}, {0,1}}
+--local param2ps_list = {[0]={-1,0}, {0,-1}, {1,0}, {0,1}}
+local param2ps_list = {[10]={-1,0}, [19]={0,-1}, [4]={1,0}, [13]={0,1}}
 local function make_flower(h, pr, area, data, param2s, shine, pz,py,px)
 	for _,crd in pairs(stem(h, pr)) do
 		local z,y,x = unpack(crd)
@@ -100,7 +101,8 @@ local function spawn_flower(pos)
 
 	local pr = PseudoRandom(pos.x+pos.y*3+pos.z*5+463)
 	local h = pr:next(3,7)
-	local tag = minetest.get_node_light(pos) >= 12
+	--local tag = minetest.get_node_light(pos) >= 12
+	local tag = math.abs(minetest.get_timeofday()-0.5) < 0.25
 
 	local manip = minetest.get_voxel_manip()
 	local emerged_pos1, emerged_pos2 = manip:read_from_map({x=pos.x-1, y=pos.y, z=pos.z-1},
