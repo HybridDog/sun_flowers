@@ -33,6 +33,7 @@ local function stem(h, pr)
 	return tab--,n
 end
 
+--[[ used before doors update
 local to_meta,num = {},1
 local function do_metas(tag)
 	local state = tag and 0 or 1
@@ -45,7 +46,7 @@ end
 local function panel_meta(pos)
 	to_meta[num] = pos
 	num = num+1
-end
+end--]]
 
 local c_air = minetest.get_content_id("air")
 local c_ignore = minetest.get_content_id("ignore")
@@ -82,7 +83,7 @@ local function make_flower(h, pr, area, data, param2s, shine, pz,py,px)
 		or data[vi] == c_ignore then
 			data[vi] = blutenblatt
 			param2s[vi] = par
-			panel_meta({x=x,y=y,z=z})
+			--panel_meta({x=x,y=y,z=z})
 		end
 	end
 	local vi = area:index(px, y, pz)
@@ -114,9 +115,10 @@ local function spawn_flower(pos)
 	manip:set_param2_data(param2s)
 	manip:write_to_map()
 	log("flower grew", 2, t1)
+	--[[
 	t1 = os.clock()
 	do_metas(tag)
-	log("metas set", 2, t1)
+	log("metas set", 2, t1)--]]
 	t1 = os.clock()
 	manip:update_map()
 	log("map updated", 2, t1)
@@ -237,9 +239,10 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	vm:write_to_map()
 	log("data set", 2, t2)
 
+	--[[
 	t2 = os.clock()
 	do_metas(tag)
-	log("metas set", 2, t2)
+	log("metas set", 2, t2)--]]
 
 	log("done", 1, t1)
 end)
