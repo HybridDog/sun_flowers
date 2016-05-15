@@ -193,6 +193,9 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local vm, area, data, param2s, pmap
 
 	local heightmap = minetest.get_mapgen_object("heightmap")
+	if not heightmap then
+		return
+	end
 	local hmi = 1
 
 	local flower_placed = false
