@@ -2,8 +2,8 @@ local load_time_start = os.clock()
 
 local ast_hdif_max = 3
 
-local function log(msg, lv, delay)
-	print("[sun_flowers] "..msg)
+local function log(msg)
+	print("[sun_flowers] " .. msg)
 end
 
 local function stem(h, pr)
@@ -173,7 +173,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
 
 	local t1 = os.clock()
 
-	local x0,z0,x1,z1 = minp.x,minp.z,maxp.x,maxp.z	-- Assume X and Z lengths are equal
+	local x0,z0,x1 = minp.x,minp.z,maxp.x
+	-- Assume X and Z lengths are equal
 	local divs = (x1-x0)
 
 	if not perlinmap then
